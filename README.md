@@ -12,6 +12,7 @@ The name of this is se_project_aroundtheus. This project is all about learning a
 
 Here is a link to my video: https://drive.google.com/file/d/1rPyGezrPyoKQB1ekGEwJkLewNuIofgMR/view?usp=drive_link
 
+Here is a link to the website deployed on a website: https://aaronicle.github.io/se_project_aroundtheus/
 **Figma**
 
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
