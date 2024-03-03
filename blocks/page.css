@@ -9,7 +9,7 @@
   max-width: 882px;
   width: 100%;
   position: relative;
-  margin: 45px auto;
+  margin: 45px auto 51px;
   box-sizing: border-box;
 }
 
@@ -26,5 +26,12 @@
   .page__section {
     margin: 28px 20px;
     max-width: calc(100% - 40px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .page__section {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
