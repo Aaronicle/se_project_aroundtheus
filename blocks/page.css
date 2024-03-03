@@ -29,6 +29,12 @@
   }
 }
 
+@media screen and (max-width: 680px) {
+  .page__content {
+    display: grid;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .page__section {
     margin-top: 0;
