@@ -1,6 +1,6 @@
 .profile {
   display: flex;
-  padding-top: 40px;
+  padding-top: 51px;
   align-items: center;
 }
 
@@ -33,7 +33,6 @@
   width: 150px;
   height: 50px;
   margin-left: auto;
-  margin-right: auto;
   border: none;
   color: white;
 }
@@ -93,6 +92,7 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+    padding-top: 42px;
   }
 
   .profile__info {
@@ -125,6 +125,7 @@
     height: 18px;
     width: 18px;
     border: 1px solid white;
+    margin: 0;
   }
 
   .profile__add-button {
