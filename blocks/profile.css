@@ -23,8 +23,7 @@
 }
 
 .profile__edit-button:hover {
-  background: transparent url(../images/Edit\ Button\ hover.svg) center
-    no-repeat;
+  opacity: 0.6;
   cursor: pointer;
 }
 
@@ -38,8 +37,8 @@
 }
 
 .profile__add-button:hover {
-  background: transparent url(../images/Add\ Button\ hover.svg) center no-repeat;
   cursor: pointer;
+  opacity: 0.6;
 }
 
 .profile__title {
@@ -100,6 +99,9 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    display: flex;
+    column-gap: 10px;
+    max-width: 280px;
   }
 
   .profile__image {
@@ -134,5 +136,9 @@
     background: transparent url(../images/add\ button\ 320view.svg) center
       no-repeat;
     border: 2px white solid;
+  }
+
+  .profile__add-button:hover {
+    opacity: 0.6;
   }
 }
