@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  bottom: 0;
+  bottom: 30%;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
@@ -80,7 +80,7 @@
 
 @media screen and (max-width: 480px) {
   .modal__container {
-    max-width: 282px;
+    max-width: 215px;
     max-height: 322px;
   }
 
@@ -88,11 +88,20 @@
     max-width: 238px;
     max-height: 46px;
   }
-}
 
-@media screen and (max-width: 600px) {
+  .modal__heading {
+    font-size: 18px;
+  }
+
   .modal__close {
-    right: 0;
-    top: -60px;
+    width: 24px;
+    height: 24px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .modal__close {
+      right: 0;
+      top: -60px;
+    }
   }
 }
