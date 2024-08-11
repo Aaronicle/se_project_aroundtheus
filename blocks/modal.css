@@ -51,6 +51,7 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .modal__title {
@@ -91,6 +92,8 @@
 
   .modal__heading {
     font-size: 18px;
+    font-weight: 900;
+    line-height: 21.78px;
   }
 
   .modal__close {
