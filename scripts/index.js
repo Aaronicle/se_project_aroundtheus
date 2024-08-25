@@ -1,3 +1,26 @@
+const profileEditBtn = document.querySelector("#profile-edit-btn");
+const profileEditModal = document.querySelector("#profile-edit-modal");
+const modalCloseBtn = document.querySelector("#modal-close-btn");
+const profileTitle = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
+const profileTitleInput = document.querySelector("#profile-title-input");
+const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
+const cardAddModal = document.querySelector("#card-add-modal");
+const cardAddButton = document.querySelector("#add-button");
+const cardCloseBtn = document.querySelector("#card-close-btn");
+const cardAddForm = cardAddModal.querySelector(".modal__form");
+const cardTitleInput = document.querySelector("#card-title-input");
+const addImageUrlValue = document.querySelector("#card-link");
+const imageModal = document.querySelector("#image-popup");
+const modalCaption = document.querySelector(".popup__caption");
+const modalImageElement = document.querySelector(".popup__image");
+const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
+const cardListEl = document.querySelector(".cards__list");
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -25,39 +48,25 @@ const initialCards = [
   },
 ];
 
-const profileEditBtn = document.querySelector("#profile-edit-btn");
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const modalCloseBtn = document.querySelector("#modal-close-btn");
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
-const profileEditForm = profileEditModal.querySelector(".modal__form");
-const cardListEl = document.querySelector(".cards__list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
+//FUNCTIONS//
 
 function closePopup() {
   profileEditModal.classList.remove("modal_opened");
+  cardAddModal.classList.remove("modal_opened");
 }
 
 function getCardElement(cardData) {
-  // clone the template element with all its content and store it in a cardElement variable
   const cardElement = cardTemplate.cloneNode(true);
-  // access the card title and image and store them in variables
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
-  // set the path to the image to the link field of the object
+
   cardImageEl.src = cardData.link;
-  // set the image alt text to the name field of the object
   cardImageEl.alt = cardData.name;
-  // set the card title to the name field of the object, too
   cardTitleEl.textContent = cardData.name;
-  // return the ready HTML element with the filled-in data
+
   return cardElement;
 }
+
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -65,14 +74,36 @@ function handleProfileEditSubmit(e) {
   closePopup();
 }
 
+function handleAddFormSubmit(e) {
+  e.preventDefault();
+  const card = {
+    name: cardTitleInput.value,
+    link: addImageUrlValue.value,
+  };
+
+  const cardElement = getCardElement(card);
+
+  cardListEl.prepend(cardElement);
+  closePopup();
+}
+
+//EVENT LISTENERS//
+
 profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   profileEditModal.classList.add("modal_opened");
 });
+
+cardAddButton.addEventListener("click", () => {
+  cardAddModal.classList.add("modal_opened");
+});
+
 modalCloseBtn.addEventListener("click", closePopup);
+cardCloseBtn.addEventListener("click", closePopup);
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+cardAddForm.addEventListener("submit", handleAddFormSubmit);
 
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
