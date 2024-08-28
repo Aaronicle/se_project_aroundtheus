@@ -88,20 +88,26 @@
             name="link"
             placeholder="Image link"
           />
-          <button class="modal__button">Save</button>
+          <button class="modal__button">Create</button>
         </form>
       </div>
     </div>
     <div class="modal" id="image-popup">
-      <div class="modal__container">
-        <button class="modal__close" id="card-close-btn"></button>
-        <img class="popup__image" src="" alt="" />
-        <p class="popup__caption"></p>
+      <div class="modal__image">
+        <div class="modal__image_container">
+          <div class="modal__button_container">
+            <button class="modal__close" id="img-close-btn"></button>
+          </div>
+          <img class="modal__image_popup" src="" alt="" />
+          <p class="modal__caption"></p>
+        </div>
       </div>
     </div>
 
     <template id="card-template">
       <li class="card">
+        <button class="card__delete_button" type="button"></button>
+
         <img src="" class="card__image" alt="" />
         <div class="card__description">
           <h2 class="card__title"></h2>
