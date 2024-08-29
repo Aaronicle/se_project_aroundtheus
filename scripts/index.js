@@ -16,7 +16,7 @@ const addImageUrlValue = document.querySelector("#card-link");
 const imageModal = document.querySelector("#image-popup");
 const imageCloseButton = document.querySelector("#img-close-btn");
 const modalCaption = document.querySelector(".modal__caption");
-const modalImageElement = document.querySelector(".modal__image_popup");
+const modalImageElement = document.querySelector(".modal__image-popup");
 const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
@@ -64,7 +64,7 @@ function getCardElement(cardData) {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
-  const cardDeleteBtn = cardElement.querySelector(".card__delete_button");
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-button");
 
   //cardElement.remove()
 
@@ -108,6 +108,7 @@ function handleAddFormSubmit(e) {
 
   cardListEl.prepend(cardElement);
   closePopup(cardAddModal);
+  cardAddForm.reset();
 }
 
 //EVENT LISTENERS//

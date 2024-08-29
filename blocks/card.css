@@ -38,7 +38,7 @@
   font-family: "Inter", Arial, sans-serif;
 }
 
-.card__delete_button {
+.card__delete-button {
   background: transparent url(../images/Trash.svg) center no-repeat;
   width: 18px;
   height: 20px;
@@ -48,7 +48,7 @@
   border: none;
 }
 
-.card__delete_button:hover {
+.card__delete-button:hover {
   cursor: pointer;
   opacity: 0.6;
 }

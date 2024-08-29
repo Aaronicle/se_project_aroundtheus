@@ -41,7 +41,7 @@
   flex-direction: column;
 }
 
-.modal__button_container {
+.modal__button-container {
   position: relative;
 }
 
@@ -97,7 +97,7 @@
   transition: opacity 0.5s;
 }
 
-.modal__image_popup {
+.modal__image-popup {
   max-height: 75vh;
   max-width: 75vw;
 }
