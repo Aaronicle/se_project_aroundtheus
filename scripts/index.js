@@ -3,15 +3,13 @@ const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileCloseBtn = document.querySelector("#profile-close-btn");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
+const profileTitleInput = document.querySelector("#profile-title");
+const profileDescriptionInput = document.querySelector("#profile-description");
 const cardAddModal = document.querySelector("#card-add-modal");
 const cardAddButton = document.querySelector("#add-button");
 const cardCloseBtn = document.querySelector("#card-close-btn");
 const cardAddForm = cardAddModal.querySelector(".modal__form");
-const cardTitleInput = document.querySelector("#card-title-input");
+const cardTitleInput = document.querySelector("#card-title");
 const addImageUrlValue = document.querySelector("#card-link");
 const imageModal = document.querySelector("#image-popup");
 const imageCloseButton = document.querySelector("#img-close-btn");
