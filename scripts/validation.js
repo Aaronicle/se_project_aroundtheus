@@ -1,15 +1,15 @@
 function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
-  inputEl.classList.add(options.inputErrorClass);
+  inputEl.classList.add(inputErrorClass);
   errorMessageEl.textContent = inputEl.validationMessage;
-  errorMessageEl.classlist.add(errorClass);
+  errorMessageEl.classList.add(errorClass);
 }
 
 function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
-  inputEl.classList.remove(options.inputErrorClass);
+  inputEl.classList.remove(inputErrorClass);
   errorMessageEl.textContent = "";
-  errorMessageEl.classlist.remove(errorClass);
+  errorMessageEl.classList.remove(errorClass);
 }
 
 function checkInputValidity(formEl, inputEl, options) {
@@ -22,33 +22,34 @@ function checkInputValidity(formEl, inputEl, options) {
 
 function toggleButtonState(
   inputEls,
-  submitButtonSelector,
+  submitButtonElement,
   { inactiveButtonClass }
 ) {
   let foundInvalid = false;
   inputEls.forEach((input) => {
-    if (inputEl.validity.valid) {
+    if (!input.validity.valid) {
       foundInvalid = true;
     }
   });
 
   if (foundInvalid) {
-    submitButtonSelector.classList.add(inactiveButtonClass);
-    submitButtonSelector.disabled = true;
+    submitButtonElement.classList.add(inactiveButtonClass);
+    submitButtonElement.disabled = true;
   } else {
-    submitButtonSelector.classList.remove(inactiveButtonClass);
-    ubmitButtonSelector.disabled = false;
+    submitButtonElement.classList.remove(inactiveButtonClass);
+    submitButtonElement.disabled = false;
   }
 }
 
 function setEventListeners(formEl, options) {
-  const { inputSelector } = options;
+  const { inputSelector, submitButtonSelector } = options;
+  const submitButton = formEl.querySelector(submitButtonSelector);
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
-  const { submitButtonSelector } = options;
+  // toggleButtonState(inputEls, submitButton, options);
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
       checkInputValidity(formEl, inputEl, options);
-      toggleButtonState(inputEls, submitButtonSelector, options);
+      toggleButtonState(inputEls, submitButton, options);
     });
   });
 }

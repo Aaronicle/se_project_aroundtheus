@@ -76,17 +76,31 @@
 .modal__input {
   border: none;
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   font-size: 14px;
   line-height: 17px;
   padding-bottom: 13px;
   font-family: "Inter";
+  padding: 0;
+}
+
+.modal__input_type_error {
+  padding: 0;
+  border-bottom: 1px solid;
+  border-bottom-color: rgba(255, 0, 0, 1);
+}
+
+.modal__error {
+  color: rgba(255, 0, 0, 1);
+  font-family: "Inter";
+  font-size: 12px;
+  line-height: 15px;
+  visibility: hidden;
+  min-height: 36px;
 }
 
 .modal__error_visible {
-  color: rgba(255, 0, 0, 1);
-  font-size: 12px;
-  line-height: 15px;
+  visibility: visible;
 }
 
 .modal__button {
@@ -101,6 +115,11 @@
   text-align: center;
   cursor: pointer;
   transition: opacity 0.5s;
+  margin-top: 5px;
+}
+
+.modal__button_disabled {
+  opacity: 0.2;
 }
 
 .modal__image-popup {
