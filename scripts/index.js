@@ -1,18 +1,23 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
+//Constants
+
 const profileEditBtn = document.querySelector("#profile-edit-btn");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileCloseBtn = document.querySelector("#profile-close-btn");
+//const profileCloseBtn = document.querySelector("#profile-close-btn");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title");
 const profileDescriptionInput = document.querySelector("#profile-description");
 const cardAddModal = document.querySelector("#card-add-modal");
 const cardAddButton = document.querySelector("#add-button");
-const cardCloseBtn = document.querySelector("#card-close-btn");
+//const cardCloseBtn = document.querySelector("#card-close-btn");
 const cardAddForm = cardAddModal.querySelector(".modal__form");
 const cardTitleInput = document.querySelector("#card-title");
 const addImageUrlValue = document.querySelector("#card-link");
 const imageModal = document.querySelector("#image-popup");
-const imageCloseButton = document.querySelector("#img-close-btn");
+//const imageCloseButton = document.querySelector("#img-close-btn");
 const modalCaption = document.querySelector(".modal__caption");
 const modalImageElement = document.querySelector(".modal__image-popup");
 const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
@@ -46,6 +51,15 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const cardSelector = document.querySelector("#card-template");
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const card = new Card(cardData, "#card-template");
+card.getView();
 
 //FUNCTIONS//
 
@@ -183,3 +197,21 @@ initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardListEl.prepend(cardElement);
 });
+
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormElement = profileEditModal.querySelector(".modal__form");
+const addFormElement = cardAddModal.querySelector(".modal__form");
+
+const editFormValidator = new FormValidator(config, editFormElement);
+const cardFormValidator = new FormValidator(config, addFormElement);
+
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
