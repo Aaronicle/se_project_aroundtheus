@@ -1,33 +1,6 @@
-const imageModalWindow = document.querySelector(".modal__image");
-const imageElement = document.querySelector(".modal__image-popup");
-const imageCaption = document.querySelector(".modal__caption");
-
-function openPopup(popup) {
-  popup.classList.add("modal_opened");
-  document.addEventListener("keyup", handleEscUp);
-}
-
-function closePopup(popup) {
-  popup.classList.remove("modal_opened");
-  document.removeEventListener("keyup", handleEscUp);
-}
-
-const isEscEvent = (evt, action) => {
-  if (evt.key === "Escape") {
-    const activePopup = document.querySelector(".modal_opened");
-    if (evt.key === "Escape") {
-      action(activePopup);
-    }
-  }
-};
-
-const handleEscUp = (evt) => {
-  evt.preventDefault();
-  isEscEvent(evt, closePopup);
-};
-
 class Card {
-  constructor({ name, link }, cardSelector) {
+  constructor({ name, link }, cardSelector, handleImageClick) {
+    this._handleImageClick = handleImageClick;
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
@@ -50,7 +23,7 @@ class Card {
     this._cardElement
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        this._handleImageClick();
+        this._handleImageClick(this._name, this._link);
       });
   }
 
@@ -65,13 +38,6 @@ class Card {
       .classList.toggle("card__like-button_active");
   }
 
-  _handleImageClick() {
-    modalImageElement.src = cardData.link;
-    modalImageElement.alt = cardData.name;
-    modalCaption.textContent = cardTitleEl.textContent;
-    openPopup(imageModal);
-  }
-
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
@@ -84,9 +50,7 @@ class Card {
   getView() {
     this._cardElement = this._getTemplate();
     // get the card view
-    this._cardElement.querySelector(
-      ".card__image"
-    ).style.background = `url(${this._link})`;
+    this._cardElement.querySelector(".card__image").src = this._link;
     this._cardElement.querySelector(".card__title").textContent = this._name;
     // set event listeners
     this._setEventListeners();
