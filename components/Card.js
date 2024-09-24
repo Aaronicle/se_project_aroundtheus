@@ -51,7 +51,9 @@ class Card {
     this._cardElement = this._getTemplate();
     // get the card view
     this._cardElement.querySelector(".card__image").src = this._link;
+    this._cardElement.querySelector(".card__image").alt = this._name;
     this._cardElement.querySelector(".card__title").textContent = this._name;
+
     // set event listeners
     this._setEventListeners();
     // return the card
