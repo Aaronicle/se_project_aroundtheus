@@ -91,6 +91,7 @@ function getCardElement(cardData) {
   //   modalImageElement.alt = cardData.name;
   //   modalCaption.textContent = cardTitleEl.textContent;
   //   openPopup(imageModal);
+
   // });
   // cardDeleteBtn.addEventListener("click", () => {
   //   cardElement.remove();
@@ -131,6 +132,7 @@ function handleAddFormSubmit(e) {
   cardListEl.prepend(cardElement);
   closePopup(cardAddModal);
   cardAddForm.reset();
+  cardFormValidator.disableButton();
 }
 
 //EVENT LISTENERS//

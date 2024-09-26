@@ -40,14 +40,18 @@ class FormValidator {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;
     } else {
-      this._submitButton.classList.add(this._inactiveButtonClass);
-      this._submitButton.disabled = true;
+      this.disableButton();
     }
+  }
+
+  disableButton() {
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.disabled = true;
   }
 
   _setEventListeners() {
     this._inputs = [...this._form.querySelectorAll(this._inputSelector)];
-
+    this._toggleButtonState();
     this._inputs.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
