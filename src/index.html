@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the U.S</title>
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
           class="header__image"
-          src="./images/logo.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="Around the U.S logo"
         />
       </header>
@@ -20,7 +20,7 @@
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="avatar"
           />
           <div class="profile__info">
@@ -85,7 +85,7 @@
           <input
             class="modal__input"
             type="text"
-            name="title"
+            name="name"
             id="card-title"
             placeholder="Title"
             minlength="1"
@@ -127,7 +127,5 @@
         </div>
       </li>
     </template>
-
-    <script src="./pages/index.js" type="module"></script>
   </body>
 </html>
