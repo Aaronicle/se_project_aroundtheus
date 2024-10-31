@@ -16,15 +16,10 @@ const profileDescriptionInput = document.querySelector("#profile-description");
 const cardAddModal = document.querySelector("#card-add-modal");
 const cardAddButton = document.querySelector("#add-button");
 const cardAddForm = cardAddModal.querySelector(".modal__form");
-const modalCaption = document.querySelector(".modal__caption");
-const modalImageElement = document.querySelector(".modal__image-popup");
 const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
 
 function getCardElement(cardData) {
   const card = new Card(cardData, "#card-template", (name, link) => {
-    modalImageElement.src = link;
-    modalImageElement.alt = name;
-    modalCaption.textContent = name;
     imagePopup.open({ link, name });
   });
 
@@ -59,6 +54,7 @@ const cardAddPopup = new PopupWithForm({
   popupSelector: "#card-add-modal",
   handleFormSubmit: (data) => {
     renderCard(data);
+    cardFormValidator.disableButton();
   },
 });
 
