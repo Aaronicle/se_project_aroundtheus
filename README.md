@@ -22,3 +22,5 @@ Here is a link to the website deployed on a website: https://aaronicle.github.io
 Here is a link for how the project looks when completed for laptop format: https://drive.google.com/file/d/1HSEclYzXW0foE2se_Mvzm-atvstbd2Bg/view?usp=sharing
 
 Here is a link for how it looks in smartphone view: https://drive.google.com/file/d/1oTGWNiRFoMPC-tLiMEPFpNrSZ1bbK3tc/view?usp=sharing
+
+Deployed: https://Aaronicle.github.io/se_project_aroundtheus
