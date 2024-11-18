@@ -6,8 +6,17 @@ import { initialCards, config } from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithImages from "../components/PopupWithImages.js";
+import Api from "../components/Api.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 
 //Constants
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "0bf64e41-5628-4dd5-aa86-0207ee40e68a",
+    "Content-Type": "application/json",
+  },
+});
 
 const profileEditBtn = document.querySelector("#profile-edit-btn");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -17,11 +26,36 @@ const cardAddModal = document.querySelector("#card-add-modal");
 const cardAddButton = document.querySelector("#add-button");
 const cardAddForm = cardAddModal.querySelector(".modal__form");
 const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
+const deleteCardModal = document.querySelector("#delete-popup");
+const deleteBtn = document.querySelector(".card__delete-button");
+
+function handleDeleteClick(card) {
+  confirmationPopup.open();
+  confirmationPopup.setSubmitAction(() => {
+    api
+      .removeCard(card.id)
+      .then(() => {
+        card.removeCard();
+        confirmationPopup.close();
+      })
+      .catch((err) => {
+        console.error(`Error deleting card ${err}`);
+      });
+  });
+  // call setSubmitAction function
+  // pass it an arrow function
+  // inside arrow function is where you make the api request
+}
 
 function getCardElement(cardData) {
-  const card = new Card(cardData, "#card-template", (name, link) => {
-    imagePopup.open({ link, name });
-  });
+  const card = new Card(
+    cardData,
+    "#card-template",
+    (name, link) => {
+      imagePopup.open({ link, name });
+    },
+    handleDeleteClick
+  );
 
   const cardElement = card.getView();
   return cardElement;
@@ -43,25 +77,44 @@ function renderCard(cardData) {
   cardList.addItem(newCard);
 }
 
-const cardList = new Section(
-  { items: initialCards, renderer: renderCard },
-  ".cards__list"
-);
+const cardList = new Section({ renderer: renderCard }, ".cards__list");
 
-cardList.renderItems();
+api
+  .getAppInfo()
+  .then(([userData, cards]) => {
+    console.log(cards);
+    cardList.renderItems(cards);
+    profileUserInfo.setUserInfo(userData);
+  })
+  .catch((error) => console.error(error));
 
 const cardAddPopup = new PopupWithForm({
   popupSelector: "#card-add-modal",
   handleFormSubmit: (data) => {
-    renderCard(data);
-    cardFormValidator.disableButton();
+    api
+      .addCard(data)
+      .then((card) => {
+        renderCard(card);
+        cardFormValidator.disableButton();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 });
 
 const profileEditPopup = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
-  handleFormSubmit: (data) => {
-    profileUserInfo.setUserInfo(data);
+  handleFormSubmit: ({ title, description }) => {
+    api
+      .updateProfileInfo({ title, description })
+      .then((data) => {
+        profileUserInfo.setUserInfo(data);
+        editFormValidator.disableButton();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 });
 
@@ -71,6 +124,12 @@ const imagePopup = new PopupWithImages({
 
 imagePopup.setEventListeners();
 
+const confirmationPopup = new PopupWithConfirmation({
+  popupSelector: "#delete-popup",
+});
+
+confirmationPopup.setEventListeners();
+
 const profileUserInfo = new UserInfo({
   profileNameSelector: ".profile__title",
   profileJobSelector: ".profile__description",
@@ -79,7 +138,7 @@ const profileUserInfo = new UserInfo({
 const editFormValidator = new FormValidator(config, profileEditForm);
 const cardFormValidator = new FormValidator(config, cardAddForm);
 
-editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+editFormValidator.enableValidation();
 cardAddPopup.setEventListeners();
 profileEditPopup.setEventListeners();

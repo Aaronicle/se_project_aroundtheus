@@ -1,9 +1,22 @@
 class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
+  constructor(
+    { name, link, _id },
+    cardSelector,
+    handleImageClick,
+    deleteImageClick
+  ) {
+    // TODO asign _id to this object
+    // TODO pass delete handler and assign to this object
     this._handleImageClick = handleImageClick;
+    this._deleteImageClick = deleteImageClick;
     this._name = name;
     this._link = link;
+    // this._id = data.id;
     this._cardSelector = cardSelector;
+  }
+
+  getId() {
+    return this._id;
   }
 
   _setEventListeners() {
@@ -17,7 +30,10 @@ class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this._handleDeleteCard();
+        // TODO call the function passed in from index.js
+        // pass it the this object as argument
+        // this.removeCard();
+        this._deleteImageClick(this);
       });
     //.".card__image"
     this._cardElement
@@ -27,7 +43,7 @@ class Card {
       });
   }
 
-  _handleDeleteCard() {
+  removeCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
