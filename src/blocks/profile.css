@@ -72,9 +72,32 @@
   border-radius: 50%;
   object-fit: cover;
   background-position: center;
-  margin-right: 24px;
 }
 
+.profile__avatar-edit-button {
+  background-image: url(../images/Hover\ Avatar.svg);
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  visibility: hidden;
+}
+
+.profile__avatar-container:hover .profile__avatar-edit-button {
+  visibility: visible;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.profile__avatar-container {
+  position: relative;
+  margin-right: 24px;
+}
 @media screen and (max-width: 880px) {
   .profile__info {
     grid-template-columns: minmax(auto, 320px);

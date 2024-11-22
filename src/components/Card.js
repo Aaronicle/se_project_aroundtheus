@@ -1,9 +1,10 @@
 class Card {
   constructor(
-    { name, link, _id },
+    { name, link, _id, isLiked },
     cardSelector,
     handleImageClick,
-    deleteImageClick
+    deleteImageClick,
+    handleLikeClick
   ) {
     // TODO asign _id to this object
     // TODO pass delete handler and assign to this object
@@ -11,21 +12,26 @@ class Card {
     this._deleteImageClick = deleteImageClick;
     this._name = name;
     this._link = link;
-    // this._id = data.id;
+    this._id = _id;
     this._cardSelector = cardSelector;
+    this._handleLikeClick = handleLikeClick;
+    this._isLiked = isLiked;
   }
 
   getId() {
     return this._id;
   }
 
+  getLikeStatus() {
+    return this._isLiked;
+  }
+
   _setEventListeners() {
     //".card__like-button"
-    this._cardElement
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-      });
+
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeClick(this);
+    });
     //".card__delete-button"
     this._cardElement
       .querySelector(".card__delete-button")
@@ -48,10 +54,16 @@ class Card {
     this._cardElement = null;
   }
 
-  _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+  handleLikeIcon() {
+    this._likeButton.classList.toggle("card__like-button_active");
+  }
+
+  updateLikeBtn() {
+    if (this._isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
+    }
   }
 
   _getTemplate() {
@@ -65,14 +77,12 @@ class Card {
 
   getView() {
     this._cardElement = this._getTemplate();
-    // get the card view
-    // this._cardImageElement = this._cardElement.querySelector(".card__image");
-    // this._cardImageElement.src = this._link;
+    this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._cardElement.querySelector(".card__image").src = this._link;
     this._cardElement.querySelector(".card__image").alt = this._name;
     this._cardElement.querySelector(".card__title").textContent = this._name;
 
-    // set event listeners
+    this.updateLikeBtn();
     this._setEventListeners();
     // return the card
     return this._cardElement;
