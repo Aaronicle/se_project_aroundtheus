@@ -93,7 +93,7 @@ const handleAvatarSubmit = (event) => {
       profileUserInfo.setUserAvatar(data);
     })
     .catch((error) => {
-      console.error("Error updating avatar:", error);
+      console.error(error);
     });
 };
 
@@ -124,7 +124,6 @@ const cardList = new Section({ renderer: renderCard }, ".cards__list");
 api
   .getAppInfo()
   .then(([userData, cards]) => {
-    console.log(userData);
     cardList.renderItems(cards);
     profileUserInfo.setUserInfo(userData);
     profileUserInfo.setUserAvatar(userData);
