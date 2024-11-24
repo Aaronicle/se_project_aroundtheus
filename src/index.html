@@ -24,7 +24,10 @@
               src="<%=require('./images/jacques-cousteau.jpg')%>"
               alt="avatar"
             />
-            <button class="profile__avatar-edit-button"></button>
+            <button
+              class="profile__avatar-edit-button"
+              id="avatar-edit-btn"
+            ></button>
           </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
@@ -93,7 +96,7 @@
             placeholder="Image link"
             required
           />
-          <span class="modal__error" id="card-link-error"></span>
+          <span class="modal__error" id="avatar-link-error"></span>
           <button class="modal__button">Save</button>
         </form>
       </div>
