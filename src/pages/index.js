@@ -28,7 +28,6 @@ const cardAddButton = document.querySelector("#add-button");
 const cardAddForm = cardAddModal.querySelector(".modal__form");
 const profileEditForm = profileEditModal.querySelector("#profile-edit-form");
 const avatarEditForm = document.querySelector("#avatar-edit-form");
-const avatarUrlInput = document.querySelector("#avatar-link");
 
 function handleDeleteClick(card) {
   confirmationPopup.open();
@@ -82,22 +81,6 @@ function handleLikeCard(card) {
       });
   }
 }
-
-const handleAvatarSubmit = (event) => {
-  event.preventDefault();
-  const avatarUrl = avatarUrlInput.value;
-
-  api
-    .updateUserAvatar(avatarUrl)
-    .then((data) => {
-      profileUserInfo.setUserAvatar(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
-
-avatarEditForm.addEventListener("submit", handleAvatarSubmit);
 
 profileEditBtn.addEventListener("click", () => {
   const data = profileUserInfo.getUserInfo();
@@ -164,7 +147,7 @@ const avatarEditPopup = new PopupWithForm({
   popupSelector: "#avatar-edit-modal",
   handleFormSubmit: ({ avatarUrl }) => {
     api
-      .updateUserAvatar({ avatarUrl })
+      .updateUserAvatar(avatarUrl)
       .then((data) => {
         profileUserInfo.setUserAvatar(data);
         avatarFormValidator.disableButton();
@@ -199,6 +182,7 @@ const avatarFormValidator = new FormValidator(config, avatarEditForm);
 
 cardFormValidator.enableValidation();
 editFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 cardAddPopup.setEventListeners();
 profileEditPopup.setEventListeners();
 avatarEditPopup.setEventListeners();
