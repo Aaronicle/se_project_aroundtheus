@@ -83,6 +83,22 @@ function handleLikeCard(card) {
   }
 }
 
+const handleAvatarSubmit = (event) => {
+  event.preventDefault();
+  const avatarUrl = avatarUrlInput.value;
+
+  api
+    .updateUserAvatar(avatarUrl)
+    .then((data) => {
+      profileUserInfo.setUserAvatar(data);
+    })
+    .catch((error) => {
+      console.error("Error updating avatar:", error);
+    });
+};
+
+avatarEditForm.addEventListener("submit", handleAvatarSubmit);
+
 profileEditBtn.addEventListener("click", () => {
   const data = profileUserInfo.getUserInfo();
   profileTitleInput.value = data.profileName;
