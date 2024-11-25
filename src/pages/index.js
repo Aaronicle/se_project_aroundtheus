@@ -124,6 +124,7 @@ const cardAddPopup = new PopupWithForm({
         renderCard(card);
         cardFormValidator.disableButton();
         cardAddForm.reset();
+        cardAddPopup.close();
       })
       .catch((error) => {
         console.log(error);
@@ -143,6 +144,7 @@ const profileEditPopup = new PopupWithForm({
       .then((data) => {
         profileUserInfo.setUserInfo(data);
         editFormValidator.disableButton();
+        profileEditPopup.close();
       })
       .catch((error) => {
         console.log(error);
@@ -163,6 +165,7 @@ const avatarEditPopup = new PopupWithForm({
         profileUserInfo.setUserAvatar(data);
         avatarFormValidator.disableButton();
         avatarEditForm.reset();
+        avatarEditPopup.close();
       })
       .catch((error) => {
         console.log(error);
