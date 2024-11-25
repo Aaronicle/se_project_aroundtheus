@@ -8,6 +8,7 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithImages from "../components/PopupWithImages.js";
 import Api from "../components/Api.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
+import { renderLoading } from "../utils/utils.js";
 
 //Constants
 const api = new Api({
@@ -116,6 +117,7 @@ api
 const cardAddPopup = new PopupWithForm({
   popupSelector: "#card-add-modal",
   handleFormSubmit: (data) => {
+    renderLoading("#card-add-modal", true);
     api
       .addCard(data)
       .then((card) => {
@@ -124,6 +126,9 @@ const cardAddPopup = new PopupWithForm({
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        renderLoading("#card-add-modal", false);
       });
   },
 });
@@ -131,6 +136,7 @@ const cardAddPopup = new PopupWithForm({
 const profileEditPopup = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
   handleFormSubmit: ({ title, description }) => {
+    renderLoading("#profile-edit-modal", true);
     api
       .updateProfileInfo({ title, description })
       .then((data) => {
@@ -139,6 +145,9 @@ const profileEditPopup = new PopupWithForm({
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        renderLoading("#profile-edit-modal", false);
       });
   },
 });
@@ -146,6 +155,7 @@ const profileEditPopup = new PopupWithForm({
 const avatarEditPopup = new PopupWithForm({
   popupSelector: "#avatar-edit-modal",
   handleFormSubmit: ({ avatarUrl }) => {
+    renderLoading("#avatar-edit-modal", true);
     api
       .updateUserAvatar(avatarUrl)
       .then((data) => {
@@ -154,6 +164,9 @@ const avatarEditPopup = new PopupWithForm({
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        renderLoading("#avatar-edit-modal", false);
       });
   },
 });
