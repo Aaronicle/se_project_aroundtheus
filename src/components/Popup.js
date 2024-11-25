@@ -30,10 +30,4 @@ export default class Popup {
       }
     });
   }
-
-  // isEscEvent(evt, action) {
-
-  //     const activePopup = document.querySelector(".modal_opened");
-  //     action(activePopup);
-  //   }
 }

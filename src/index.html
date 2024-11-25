@@ -18,11 +18,17 @@
       </header>
       <main>
         <section class="profile page__section">
-          <img
-            class="profile__image"
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="avatar"
-          />
+          <div class="profile__avatar-container">
+            <img
+              class="profile__image"
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="avatar"
+            />
+            <button
+              class="profile__avatar-edit-button"
+              id="avatar-edit-btn"
+            ></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -43,7 +49,7 @@
         </section>
       </main>
       <footer class="footer page__section">
-        <p class="footer__copyright">©2022 Around The U.S.</p>
+        <p class="footer__copyright">©2024 Around The U.S.</p>
       </footer>
     </div>
     <div class="modal" id="profile-edit-modal">
@@ -74,6 +80,24 @@
           />
           <span class="modal__error" id="profile-description-error"></span>
           <button class="modal__button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="avatar-edit-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="card-close-btn"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form" id="avatar-edit-form">
+          <input
+            class="modal__input"
+            type="url"
+            id="avatar-link"
+            name="avatarUrl"
+            placeholder="Image link"
+            required
+          />
+          <span class="modal__error" id="avatar-link-error"></span>
+          <button class="modal__button">Save</button>
         </form>
       </div>
     </div>
@@ -113,6 +137,13 @@
         </div>
         <img class="modal__image-popup" src="" alt="" />
         <p class="modal__caption"></p>
+      </div>
+    </div>
+    <div class="modal" id="delete-popup">
+      <div class="modal__container">
+        <button class="modal__close" id="delete-close-btn"></button>
+        <p class="modal__heading">Are you sure?</p>
+        <button class="modal__button">Yes</button>
       </div>
     </div>
 
